@@ -16,6 +16,7 @@ function Products() {
 
   return (
     <div>
+      {/* chakra-ui grid yapısı */}
       <Grid templateColumns="repeat(5, 1fr)" gap={4}>
         {data.map((item, key) => {
           return <Card key={key} item={item} />;
