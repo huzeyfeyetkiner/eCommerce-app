@@ -4,15 +4,20 @@ import "./index.css";
 import "./reset.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter } from "react-router-dom"; // router-dom kütüphanesi için
+import { ChakraProvider } from "@chakra-ui/react"; // chakra-ui kütüphanesi için
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; // react-query kütüphanesi için
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <ChakraProvider>
-      <App />
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider>
+        <App />
+      </ChakraProvider>
+    </QueryClientProvider>
   </BrowserRouter>
 );
 
