@@ -6,6 +6,10 @@
   line-height: 2px;
 }
 
+.logo {
+  font-weight: bold;
+}
+
 .nav .left {
   display: flex;
   align-items: center;
