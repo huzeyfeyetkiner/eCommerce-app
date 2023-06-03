@@ -37,7 +37,7 @@ function Signup() {
   return (
     <div>
       <Flex align="center" width="full" justifyContent="center">
-        <Box pt="10px">
+        <Box pt="10px" w="40%">
           <Box textAlign="center">
             <Heading>Sign Up</Heading>
           </Box>
@@ -50,6 +50,7 @@ function Signup() {
             <form onSubmit={formik.handleSubmit}>
               <FormControl>
                 <FormLabel>E-mail</FormLabel>
+
                 <Input
                   name="email"
                   onChange={formik.handleChange}
@@ -57,6 +58,9 @@ function Signup() {
                   value={formik.values.email}
                   isInvalid={formik.touched.email && formik.errors.email}
                 />
+                {formik.touched.email && formik.errors.email && (
+                  <p className="error">{formik.errors.email}</p>
+                )}
               </FormControl>
 
               <FormControl mt={4}>
@@ -69,6 +73,9 @@ function Signup() {
                   value={formik.values.password}
                   isInvalid={formik.touched.password && formik.errors.password}
                 />
+                {formik.touched.password && formik.errors.password && (
+                  <p className="error">{formik.errors.password}</p>
+                )}
               </FormControl>
 
               <FormControl mt={4}>
@@ -84,6 +91,10 @@ function Signup() {
                     formik.errors.passwordConfirm
                   }
                 />
+                {formik.touched.passwordConfirm &&
+                  formik.errors.passwordConfirm && (
+                    <p className="error">{formik.errors.passwordConfirm}</p>
+                  )}
               </FormControl>
 
               <Button mt={4} width="full" type="submit">

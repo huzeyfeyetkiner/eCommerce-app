@@ -1,3 +1,7 @@
 #content {
   padding: 15px;
 }
+
+p.error {
+  color: red;
+}

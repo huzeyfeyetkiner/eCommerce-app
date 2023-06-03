@@ -8,8 +8,8 @@ let validations = object({
     .min(5, "Parolanız en az 5 karakter içermelidir.")
     .required("Bu alan zorunludur"),
   passwordConfirm: string()
-    .oneOf([ref("password")])
-    .required(),
+    .oneOf([ref("password")], "Giriğiniz paralolar eşleşmiyor")
+    .required("bu alan zorunludur"),
 });
 
 export default validations;
