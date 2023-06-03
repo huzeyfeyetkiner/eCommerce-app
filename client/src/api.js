@@ -1,9 +1,9 @@
 // API'lerle ilgili işlemlerin gerçekleşeceği dosya
 
 import axios from "axios";
-export const fetchProductList = async () => {
+export const fetchProductList = async ({ pageParam = 0 }) => {
   const { data } = await axios.get(
-    `${process.env.REACT_APP_BASE_END_POINT}/product`
+    `${process.env.REACT_APP_BASE_END_POINT}/product?page=${pageParam}`
   );
 
   return data;
