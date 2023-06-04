@@ -6,8 +6,10 @@ import moment from "moment"; // tarih verilerini formatlamak için kullanıyorum
 import ImageGallery from "react-image-gallery";
 
 function ProductDetail() {
+  // tıklanan ürüne ait id değerini tutmak için.
   const { product_id } = useParams();
 
+  // tıklanan ürünün detaylarını göstermek için kullanılan query
   const { isLoading, error, data } = useQuery({
     queryKey: ["product", product_id],
     queryFn: () => {

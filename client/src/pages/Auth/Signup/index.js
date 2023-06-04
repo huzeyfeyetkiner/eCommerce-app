@@ -12,8 +12,11 @@ import {
 import { useFormik } from "formik";
 import validationSchema from "./validation";
 import { fetchRegister } from "../../../api";
+import { useAuth } from "../../../contexts/AuthContext";
 
 function Signup() {
+  const { login } = useAuth();
+  // formik ve yup ile beraber validasyon submit ve form işlemlerini gerçekleştirdim
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -27,11 +30,13 @@ function Signup() {
           password: values.password,
         });
         console.log(registerResponse);
+
+        login(registerResponse);
       } catch (e) {
         bag.setErrors({ general: e.response.data.message });
       }
     },
-    validationSchema,
+    validationSchema, //yup'dan export edilen validasyon kriterleri
   });
 
   return (

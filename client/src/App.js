@@ -5,6 +5,7 @@ import Signup from "./pages/Auth/Signup";
 import Signin from "./pages/Auth/Sigin";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import Profile from "./pages/Profile";
 
 console.log(process.env.REACT_APP_BASE_END_POINT);
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/product/:product_id" element={<ProductDetail />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </div>

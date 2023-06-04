@@ -6,6 +6,7 @@ import { fetchProductList } from "../../api";
 
 function Products() {
   // react-query ile beraber data fetch edebilmek için
+  // react-query ile beraber tüm verileri tek seferde fetch etmek yerine kullanıcı istek gönderdiği taktirde yeni ürünleri fetch edebiliyoruz
   const {
     data,
     error,
@@ -27,8 +28,10 @@ function Products() {
     },
   });
 
+  // query altında gelen status değeri loading ise dönecek değer
   if (status === "loading") return "Loading...";
 
+  // query altında gelen status değeri error ise dönecek değer
   if (status === "error") return "An error has occurred: " + error.message;
 
   return (

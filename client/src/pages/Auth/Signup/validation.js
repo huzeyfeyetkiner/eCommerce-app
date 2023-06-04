@@ -1,4 +1,4 @@
-import { object, string, number, date, InferType, ref } from "yup";
+import { object, string, ref } from "yup";
 
 let validations = object({
   email: string()

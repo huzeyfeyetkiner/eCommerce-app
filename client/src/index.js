@@ -9,6 +9,9 @@ import { ChakraProvider } from "@chakra-ui/react"; // chakra-ui kütüphanesi i�
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; // react-query kütüphanesi için
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
+//contexts
+import { AuthProvider } from "./contexts/AuthContext";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -23,7 +26,9 @@ root.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <ChakraProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ChakraProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
