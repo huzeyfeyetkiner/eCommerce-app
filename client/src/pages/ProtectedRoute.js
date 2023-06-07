@@ -7,8 +7,8 @@ function ProtectedRoute({ children }) {
 
   if (loggedIn) {
     return children;
-  } else {
-    return <Navigate to="/" />;
   }
+
+  return <Navigate to="/" />;
 }
 export default ProtectedRoute;
