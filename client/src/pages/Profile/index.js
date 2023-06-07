@@ -1,9 +1,16 @@
 import { useAuth } from "../../contexts/AuthContext";
-import { Text } from "@chakra-ui/react";
-
+import { Text, Button } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 function Profile() {
   //user state içerisinden kullanıcı bilgileri alınıyor.
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <div>
@@ -12,6 +19,10 @@ function Profile() {
       </Text>
 
       <code>{JSON.stringify(user)}</code>
+
+      <Button colorScheme="pink" variant="solid" onClick={handleLogout}>
+        Log Out
+      </Button>
     </div>
   );
 }

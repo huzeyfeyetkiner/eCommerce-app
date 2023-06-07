@@ -7,8 +7,6 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Profile from "./pages/Profile";
 
-console.log(process.env.REACT_APP_BASE_END_POINT);
-
 function App() {
   return (
     <div className="App">

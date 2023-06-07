@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { fetchMe } from "../api";
+import { fetchMe, fetchLogout } from "../api";
 import { Flex, Spinner } from "@chakra-ui/react";
 
 const AuthContext = createContext();
@@ -10,17 +10,16 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    try {
-      (async () => {
+    (async () => {
+      try {
         const me = await fetchMe();
         setLoggedIn(true); // fetchMe'den veri döndüğünde loggedIn state'i true oluyor
         setUser(me); //fetchMe ile dönen veriyi user state'ne atıyoruz
         setLoading(false);
-        console.log(me);
-      })();
-    } catch (e) {
-      setLoading(false);
-    }
+      } catch (e) {
+        setLoading(false);
+      }
+    })();
   }, []);
 
   // ilk giriş işlemini gerçekleştiren fonksiyon
@@ -32,10 +31,20 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem("refresh-token", data.refreshToken);
   };
 
+  const logout = async () => {
+    setLoggedIn(false);
+    setUser(null);
+
+    await fetchLogout();
+    localStorage.removeItem("access-token");
+    localStorage.removeItem("refresh-token");
+  };
+
   // context içerisinden componentlere gönderilen veriler
   const values = {
     user,
     login,
+    logout,
     loggedIn,
   };
 

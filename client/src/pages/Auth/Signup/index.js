@@ -13,9 +13,12 @@ import { useFormik } from "formik";
 import validationSchema from "./validation";
 import { fetchRegister } from "../../../api";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const { login } = useAuth();
+  const navigate = useNavigate(); // kayıt işlemi sonrası ana sayfaya yönlendirmek için
+
   // formik ve yup ile beraber validasyon submit ve form işlemlerini gerçekleştirdim
   const formik = useFormik({
     initialValues: {
@@ -25,15 +28,18 @@ function Signup() {
     },
     onSubmit: async (values, bag) => {
       try {
+        // kayıt işlemi için formdan gelen verileri veritabanına gönderiyoruz.
         const registerResponse = await fetchRegister({
           email: values.email,
           password: values.password,
         });
         console.log(registerResponse);
 
-        login(registerResponse);
+        login(registerResponse); // authContext içerisinde yazılmış olan login fonksiyonu ile beraber veritabanına gönderilen verilerle login işlemini gerçekleştiriyoruz
+
+        navigate("/"); // submit işlemi sonrası anasayfaya yönlendirme
       } catch (e) {
-        bag.setErrors({ general: e.response.data.message });
+        bag.setErrors({ general: e.response.data.message }); // hata mesajını alıyoruz
       }
     },
     validationSchema, //yup'dan export edilen validasyon kriterleri
@@ -46,11 +52,14 @@ function Signup() {
           <Box textAlign="center">
             <Heading>Sign Up</Heading>
           </Box>
+
+          {/* olası bir hata durumunda kullanıcıya hata mesajı gösteriliyor */}
           <Box my={5}>
             {formik.errors.general && (
               <Alert status="error">{formik.errors.general}</Alert>
             )}
           </Box>
+
           <Box my={5} textAlign="left">
             <form onSubmit={formik.handleSubmit}>
               <FormControl>
