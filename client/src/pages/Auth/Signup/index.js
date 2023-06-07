@@ -37,7 +37,7 @@ function Signup() {
 
         login(registerResponse); // authContext içerisinde yazılmış olan login fonksiyonu ile beraber veritabanına gönderilen verilerle login işlemini gerçekleştiriyoruz
 
-        navigate("/"); // submit işlemi sonrası anasayfaya yönlendirme
+        navigate("/profile"); // submit işlemi sonrası anasayfaya yönlendirme
       } catch (e) {
         bag.setErrors({ general: e.response.data.message }); // hata mesajını alıyoruz
       }

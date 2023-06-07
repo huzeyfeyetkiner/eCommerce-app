@@ -6,6 +6,7 @@ import Signin from "./pages/Auth/Sigin";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Profile from "./pages/Profile";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   return (
@@ -18,7 +19,16 @@ function App() {
           <Route path="/product/:product_id" element={<ProductDetail />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/profile" element={<Profile />} />
+
+          {/* protected route ile beraber kullanıcı login olmadığı taktirde profile sayfasına ulaşılmasını engelliyoruz */}
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
     </div>
