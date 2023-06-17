@@ -5,3 +5,38 @@
 p.error {
   color: red;
 }
+
+.basket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.basket-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.basket-item {
+  background-color: aqua;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  background-color: #ededed;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (min-width: 1200px) {
+  .basket-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 10px;
+  }
+}

@@ -37,7 +37,7 @@ function Products() {
   return (
     <div>
       {/* chakra-ui grid yapısı */}
-      <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+      <Grid className="products-grid" templateColumns="repeat(5, 1fr)" gap={4}>
         {data.pages.map((group, i) => (
           <React.Fragment key={i}>
             {group.map((item, key) => (
