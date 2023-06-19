@@ -80,10 +80,19 @@ export const fetchLogout = async () => {
   return data;
 };
 
+// verilen siparişi veritabanına atan fonksiyon
 export const postOrder = async (input) => {
   const { data } = await axios.post(
     `${process.env.REACT_APP_BASE_END_POINT}/order`,
     input
+  );
+
+  return data;
+};
+
+export const fetchOrders = async () => {
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_BASE_END_POINT}/order`
   );
 
   return data;
