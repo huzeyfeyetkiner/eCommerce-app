@@ -90,6 +90,7 @@ export const postOrder = async (input) => {
   return data;
 };
 
+// admin sayfasında orders listesini göstermek için kullanılacak fonksiyon
 export const fetchOrders = async () => {
   const { data } = await axios.get(
     `${process.env.REACT_APP_BASE_END_POINT}/order`
