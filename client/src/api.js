@@ -98,3 +98,12 @@ export const fetchOrders = async () => {
 
   return data;
 };
+
+// admin sayfasında gerekli ürünü silmek için
+export const deleteProduct = async (id) => {
+  const { data } = await axios.delete(
+    `${process.env.REACT_APP_BASE_END_POINT}/product/${id}`
+  );
+
+  return data;
+};

@@ -8,7 +8,6 @@ import {
   Tfoot,
   Tr,
   Th,
-  Td,
   TableCaption,
   TableContainer,
   Text,
@@ -35,7 +34,7 @@ function AdminOrders() {
       <Text fontSize="2xl">Orders</Text>
 
       <TableContainer>
-        <Table variant="striped" colorScheme="teal">
+        <Table variant="simple">
           <TableCaption>Table of orders</TableCaption>
           <Thead>
             <Tr>

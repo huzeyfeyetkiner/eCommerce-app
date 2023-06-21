@@ -8,8 +8,9 @@ function Profile() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    logout();
-    navigate("/");
+    logout(() => {
+      navigate("/");
+    });
   };
 
   return (

@@ -6,7 +6,9 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+
   const [loggedIn, setLoggedIn] = useState(false);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,13 +33,15 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem("refresh-token", data.refreshToken);
   };
 
-  const logout = async () => {
+  const logout = async (callback) => {
     setLoggedIn(false);
     setUser(null);
 
     await fetchLogout();
     localStorage.removeItem("access-token");
     localStorage.removeItem("refresh-token");
+
+    callback();
   };
 
   // context içerisinden componentlere gönderilen veriler
