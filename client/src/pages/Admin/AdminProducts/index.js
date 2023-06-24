@@ -41,7 +41,7 @@ function AdminProducts() {
         key: "Action",
         render: (text, record) => (
           <>
-            <Link to={`admin/products/${record._id}`}>Edit</Link>
+            <Link to={`./${record._id}`}>Edit</Link>
             <Popconfirm
               title="Are you sure"
               description="Are you sure to delete this task?"
