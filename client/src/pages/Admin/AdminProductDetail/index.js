@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 
-import { fetchProduct } from "../../../api";
+import { fetchProduct, updateProduct } from "../../../api";
 import { useQuery } from "@tanstack/react-query";
 import { Formik, FieldArray } from "formik";
+import editSchema from "./validations.js";
+import { message } from "antd";
+
 import {
   Text,
   Box,
@@ -31,6 +34,26 @@ function AdminProductDetail() {
     return <div>{error.message}</div>;
   }
 
+  const handleSubmit = async (values, bag) => {
+    message.loading({ content: "Loading..", key: "product_update" });
+
+    try {
+      await updateProduct(values, product_id);
+
+      message.success({
+        content: "The product successfuly updated",
+        key: "product_update",
+        duration: 2,
+      });
+    } catch (e) {
+      message.error({
+        content: "The product couldn't updated",
+        key: "product_update",
+        duration: 2,
+      });
+    }
+  };
+
   return (
     <div>
       <Text fontSize="2xl">Edit</Text>
@@ -43,6 +66,8 @@ function AdminProductDetail() {
           price: data.price,
           photos: data.photos,
         }}
+        validationSchema={editSchema}
+        onSubmit={handleSubmit}
       >
         {({
           handleSubmit,
@@ -65,7 +90,11 @@ function AdminProductDetail() {
                       onBlur={handleBlur}
                       value={values.title}
                       disabled={isSubmitting}
+                      isInvalid={touched.title && errors.title}
                     />
+                    {touched.title && errors.title && (
+                      <Text color="red">{errors.title}</Text>
+                    )}
                   </FormControl>
                   <FormControl mt="5">
                     <FormLabel>Description</FormLabel>
@@ -75,7 +104,12 @@ function AdminProductDetail() {
                       onBlur={handleBlur}
                       value={values.description}
                       disabled={isSubmitting}
+                      isInvalid={touched.description && errors.description}
                     />
+
+                    {touched.description && errors.description && (
+                      <Text color="red">{errors.description}</Text>
+                    )}
                   </FormControl>
 
                   <FormControl mt="5">
@@ -86,7 +120,12 @@ function AdminProductDetail() {
                       onBlur={handleBlur}
                       value={values.price}
                       disabled={isSubmitting}
+                      isInvalid={touched.price && errors.price}
                     />
+
+                    {touched.price && errors.price && (
+                      <Text color="red">{errors.price}</Text>
+                    )}
                   </FormControl>
 
                   <FormControl mt="5">

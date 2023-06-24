@@ -107,3 +107,13 @@ export const deleteProduct = async (id) => {
 
   return data;
 };
+
+// admin sayfası içerisinde product bilgilerini güncelleme amacıyla kullanılan fonksiyon
+export const updateProduct = async (input, id) => {
+  const { data } = await axios.put(
+    `${process.env.REACT_APP_BASE_END_POINT}/product/${id}`,
+    input
+  );
+
+  return data;
+};

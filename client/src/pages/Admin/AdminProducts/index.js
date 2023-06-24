@@ -19,6 +19,7 @@ function AdminProducts() {
   });
 
   // antdesign ile beraber gelen table column'larını belirlemek için kullanıldı
+  // usememo ile beraber gereksiz render işleminden kurtuluyoruz.
   const columns = useMemo(() => {
     return [
       {
