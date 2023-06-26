@@ -39,6 +39,16 @@ export const fetchProduct = async (id) => {
   return data;
 };
 
+// ürün ekleme işlemi için gerçekleştirilecek api isteği
+export const postProduct = async (input) => {
+  const { data } = await axios.post(
+    `${process.env.REACT_APP_BASE_END_POINT}/product/`,
+    input
+  );
+
+  return data;
+};
+
 // kayıt işleminin gerçekleştiği api isteği
 export const fetchRegister = async (input) => {
   const { data } = await axios.post(
