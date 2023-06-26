@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchProductList, deleteProduct } from "../../../api";
 import { Table, Popconfirm, Button } from "antd";
-import { Text } from "@chakra-ui/react";
+import { Text, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useMemo } from "react";
 
@@ -78,9 +78,15 @@ function AdminProducts() {
 
   return (
     <div>
-      <Text p="5" fontSize="2xl">
-        Products
-      </Text>
+      <Flex justifyContent="space-between" alignItems="center">
+        <Text p="5" fontSize="2xl">
+          Products
+        </Text>
+
+        <Link to="new">
+          <Button>New</Button>
+        </Link>
+      </Flex>
 
       <Table dataSource={data} columns={columns} rowKey={"_id"} />
     </div>

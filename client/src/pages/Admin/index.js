@@ -5,6 +5,7 @@ import AdminOrders from "../Admin/AdminOrders";
 import AdminProducts from "../Admin/AdminProducts";
 import AdminHome from "../Admin/AdminHome";
 import AdminProductDetail from "./AdminProductDetail";
+import NewProduct from "./AdminProducts/new";
 
 function Admin() {
   return (
@@ -26,6 +27,7 @@ function Admin() {
           <Route path="/" element={<AdminHome />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="products" element={<AdminProducts />} />
+          <Route path="products/new" element={<NewProduct />} />
           <Route path="products/:product_id" element={<AdminProductDetail />} />
         </Routes>
       </Box>
